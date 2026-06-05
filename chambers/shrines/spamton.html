@@ -1,0 +1,482 @@
+<head>
+<title>
+im goin g to pour milk on spamton g spamton so he's sopping wet all the time and then im gogigng to slam him against walls and it will make a loud thud
+</title>
+<link href="https://i.imgur.com/qudOdTM.gif" rel="icon" type="image/x-icon" />
+
+<!-- CURSOR SCRIPT START -->
+
+<script type="text/javascript">
+  // <![CDATA[
+  var colours=new Array('#f00', '#f06', '#f0f', '#f6f', '#f39', '#f9c'); // colours of the hearts
+  var minisize=16; // smallest size of hearts in pixels
+  var maxisize=28; // biggest size of hearts in pixels
+  var hearts=66; // maximum number of hearts on screen
+  var over_or_under="over"; // set to "over" for hearts to always be on top, or "under" to allow them to float behind other objects
+  
+  /*****************************
+  *JavaScript Love Heart Cursor*
+  *  (c)2013+ mf2fm web-design *
+  *   http://www.mf2fm.com/rv  *
+  *  DON'T EDIT BELOW THIS BOX *
+  *****************************/
+  var x=ox=400;
+  var y=oy=300;
+  var swide=800;
+  var shigh=600;
+  var sleft=sdown=0;
+  var herz=new Array();
+  var herzx=new Array();
+  var herzy=new Array();
+  var herzs=new Array();
+  var kiss=false;
+  
+    if (typeof('addRVLoadEvent')!='function') function addRVLoadEvent(funky) {
+    var oldonload=window.onload;
+    if (typeof(oldonload)!='function') window.onload=funky;
+    else window.onload=function() {
+    if (oldonload) oldonload();
+    funky();
+  }
+  }
+  
+  addRVLoadEvent(mwah);
+  
+    function mwah() { if (document.getElementById) {
+    var i, heart;
+    for (i=0; i<hearts; i++) {
+    heart=createDiv("auto", "auto");
+    heart.style.visibility="hidden";
+  	heart.style.zIndex=(over_or_under=="over")?"1001":"0";
+    heart.style.color=colours[i%colours.length];
+  	heart.style.pointerEvents="none";
+    if (navigator.appName=="Microsoft Internet Explorer") heart.style.filter="alpha(opacity=75)";
+    else heart.style.opacity=0.75;
+    heart.appendChild(document.createTextNode(String.fromCharCode(9829)));
+    document.body.appendChild(heart);
+    herz[i]=heart;
+  	herzy[i]=false;
+  }
+    set_scroll();
+    set_width();
+    herzle();
+  }}
+  
+    function herzle() {
+    var c;
+    if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+    ox=x;
+    oy=y;
+    for (c=0; c<hearts; c++) if (herzy[c]===false) {
+    herz[c].firstChild.nodeValue=String.fromCharCode(9829);
+    herz[c].style.left=(herzx[c]=x-minisize/2)+"px";
+    herz[c].style.top=(herzy[c]=y-minisize)+"px";
+    herz[c].style.fontSize=minisize+"px";
+  	herz[c].style.fontWeight='normal';
+    herz[c].style.visibility='visible';
+    herzs[c]=minisize;
+    break;
+  }
+  }
+    for (c=0; c<hearts; c++) if (herzy[c]!==false) blow_me_a_kiss(c);
+    setTimeout("herzle()", 40);
+  }
+  
+    document.onmousedown=pucker;
+    document.onmouseup=function(){clearTimeout(kiss);};
+  
+    function pucker() {
+      ox=-1;
+      oy=-1;
+      kiss=setTimeout('pucker()', 100);
+  }
+  
+    function blow_me_a_kiss(i) {
+      herzy[i]-=herzs[i]/minisize+i%2;
+      herzx[i]+=(i%5-2)/5;
+      if (herzy[i]<sdown-herzs[i] || herzx[i]<sleft-herzs[i] || herzx[i]>sleft+swide-herzs[i]) {
+        herz[i].style.visibility="hidden";
+        herzy[i]=false;
+      }
+      else if (herzs[i]>minisize+2 && Math.random()<.5/hearts) break_my_heart(i);
+      else {
+        if (Math.random()<maxisize/herzy[i] && herzs[i]<maxisize) herz[i].style.fontSize=(++herzs[i])+"px";
+        herz[i].style.top=herzy[i]+"px";
+        herz[i].style.left=herzx[i]+"px";
+  }
+  }
+  
+    function break_my_heart(i) {
+      var t;
+      herz[i].firstChild.nodeValue=String.fromCharCode(9676);
+      herz[i].style.fontWeight='bold';
+      herzy[i]=false;
+      for (t=herzs[i]; t<=maxisize; t++) setTimeout('herz['+i+'].style.fontSize="'+t+'px"', 60*(t-herzs[i]));
+      setTimeout('herz['+i+'].style.visibility="hidden";', 60*(t-herzs[i]));
+  }
+  
+    document.onmousemove=mouse;
+    function mouse(e) {
+      if (e) {
+        y=e.pageY;
+        x=e.pageX;
+  }
+    else {
+      set_scroll();
+      y=event.y+sdown;
+      x=event.x+sleft;
+  }
+  }
+  
+    window.onresize=set_width;
+    function set_width() {
+      var sw_min=999999;
+      var sh_min=999999;
+      if (document.documentElement && document.documentElement.clientWidth) {
+        if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+        if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+    if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+      if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+      if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+    if (document.body.clientWidth) {
+      if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+      if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+    if (sw_min==999999 || sh_min==999999) {
+      sw_min=800;
+      sh_min=600;
+  }
+    swide=sw_min;
+    shigh=sh_min;
+  }
+  
+    window.onscroll=set_scroll;
+    function set_scroll() {
+      if (typeof(self.pageYOffset)=='number') {
+        sdown=self.pageYOffset;
+        sleft=self.pageXOffset;
+  }
+    else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+      sdown=document.body.scrollTop;
+      sleft=document.body.scrollLeft;
+  }
+    else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+      sleft=document.documentElement.scrollLeft;
+      sdown=document.documentElement.scrollTop;
+  }
+    else {
+      sdown=0;
+      sleft=0;
+  }
+  }
+  
+    function createDiv(height, width) {
+      var div=document.createElement("div");
+      div.style.position="absolute";
+      div.style.height=height;
+      div.style.width=width;
+      div.style.overflow="hidden";
+      div.style.backgroundColor="transparent";
+      return (div);
+  }
+    // ]]>
+</script>
+
+<style>
+  body {
+    background-color: black;
+  }
+  
+  body {
+    font-family: 'Comic Sans MS'; 
+    color: white;
+  }
+    a {
+    color: white;
+  }
+    a:visited {
+    color: white;
+  }
+    a:hover, a:active, a:focus {
+    color: white;
+  }
+
+    .table {
+    background: rgba(255,255,255,0.3);
+  }
+</style>
+</head>
+
+<!-- TABLE SCRIPT END -->
+<!-- table transparency above use class='table' on table-->
+
+<!--- HEADER END -->
+
+<body>
+
+<!-- FALLING LIL BITCHES START -->
+
+<marquee behavior=scroll direction=down scrollamount=2 scrolldelay=23 height=2000 style='position:absolute; left:13%; top:193px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=3 scrolldelay=16 height=2000 style='position:absolute; left:32%; top:92px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=6 scrolldelay=33 height=2000 style='position:absolute; left:6%; top:40px; width:32; height:1200px;'><img src=https://i.imgur.com/qudOdTM.gif border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=5 scrolldelay=24 height=2000 style='position:absolute; left:61%; top:61px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee> 
+<marquee behavior=scroll direction=down scrollamount=1 scrolldelay=27 height=2000 style='position:absolute; left:75%; top:48px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=2 scrolldelay=36 height=2000 style='position:absolute; left:60%; top:105px; height:1200px;'><img src=https://i.imgur.com/LNrYXVG.gif border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=4 scrolldelay=24 height=2000 style='position:absolute; left:89%; top:37px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=5 scrolldelay=6 height=2000 style='position:absolute; left:25%; top:154px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=3 scrolldelay=38 height=2000 style='position:absolute; left:40%; top:149px; height:1200px;'><img src=https://i.imgur.com/OlM3li6.gif border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=5 scrolldelay=14 height=2000 style='position:absolute; left:28%; top:4px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=1 scrolldelay=28 height=2000 style='position:absolute; left:5%; top:44px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=6 scrolldelay=48 height=2000 style='position:absolute; left:26%; top:75px; height:1200px;'><img src=https://i.imgur.com/VYJEiqd.gif border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=1 scrolldelay=39 height=2000 style='position:absolute; left:78%; top:135px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=2 scrolldelay=22 height=2000 style='position:absolute; left:41%; top:13px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=3 scrolldelay=50 height=2000 style='position:absolute; left:56%; top:71px; height:1200px;'><img src=https://i.imgur.com/u8U77cP.gif border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=6 scrolldelay=6 height=2000 style='position:absolute; left:86%; top:123px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=6 scrolldelay=32 height=2000 style='position:absolute; left:45%; top:33px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=1 scrolldelay=29 height=2000 style='position:absolute; left:59%; top:100px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=2 scrolldelay=9 height=2000 style='position:absolute; left:39%; top:184px; width:32; height:1200px;'><img src=https://i.imgur.com/0n9g1Ui.png border=0></marquee>
+<marquee behavior=scroll direction=down scrollamount=2 scrolldelay=12 height=2000 style='position:absolute; left:75%; top:17px; height:1200px;'><img src=https://i.imgur.com/loDMFRz.gif border=0></marquee>
+
+<!-- FALLING LIL BITCHES END -->
+
+<div class="root" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+
+<div class="6a9ZBUvIq" style="position: absolute; top: 60%; bottom: -10%; left: 0; right: 60%;">
+  <img loading="lazy" src="https://i.imgur.com/P6H8OJZ.gif">
+</div>
+
+<div class="SentrhU0b" style="position: absolute; top: 500; bottom: calc(10% + 310px); left: 900; right: calc(10% + -80px);">
+  <img loading="lazy" src="https://i.imgur.com/LoqoCZH.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 800; bottom: 200; left: 190; right: -80;">
+  <img loading="lazy" src="https://i.imgur.com/L0Jwu4V.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 800; bottom: 200; left: 80; right: -80;">
+  <img loading="lazy" src="https://i.imgur.com/qudOdTM.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 650; bottom: 200; left: 190; right: -80;">
+  <img loading="lazy" src="https://i.imgur.com/lejhgwk.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 680; bottom: 200; left: 280; right: -80;">
+  <img loading="lazy" src="https://i.imgur.com/jfph7ph.png">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 1200; bottom: 200; right: 80;">
+  <img loading="lazy" src="https://i.imgur.com/qudOdTM.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 600; bottom: 600; right: 200;">
+  <img loading="lazy" src="https://i.imgur.com/xicc6lo.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 1200; left: 80; right: -80;">
+  <img loading="lazy" src="https://i.imgur.com/QgR53tR.png">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; top: 990; left: 1110;">
+  <img loading="lazy" src="https://i.imgur.com/QwiKWrR.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; bottom: 450; left: 1110;">
+  <img loading="lazy" src="https://i.imgur.com/a4cVuJi.gif">
+</div>
+
+<div class="kvb6uEe7H" style="position: absolute; bottom: 450; left: 360;">
+  <img loading="lazy" src="https://i.imgur.com/wSd12aZ.gif">
+</div>
+
+<center>
+
+<table align="center">
+  <tr>
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/uuygqDi.gif">
+    </td>
+  </tr>
+  
+  <tr align="center">
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/L2rp3fu.gif">
+    </td>
+
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/9B9Zwf6.gif">
+    </td>
+
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/L2rp3fu.gif">
+      <br>
+    </td>
+  </tr>
+</table>
+
+<table cellspacing="2" width=60%>
+  <tr>
+    <td>
+      <center>
+      <font size="4">
+      <br>
+      </font>
+      </center>
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr align="center">
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/VBwp7dg.gif">
+    </td>
+    
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/lkR0GQC.gif">
+    </td>
+    
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/9zbOxkZ.gif">
+    </td>
+    
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/lkR0GQC.gif">
+    </td>
+    
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/cEdjkco.gif">
+    </td>
+  </tr>
+</table>
+
+<br>
+<br>
+<br>
+
+<img loading="lazy" src="https://i.imgur.com/yhsfXcw.gif"><img loading="lazy" src="https://i.imgur.com/yhsfXcw.gif">
+
+<br>
+<br>
+
+<!-- FIRST TABLE START -->
+
+<table align="center" cellpadding="9">
+  <tr>
+    <td align="right">
+      <img loading="lazy" src="https://i.imgur.com/mnBhO3V.gif">Spamton is the cutest little <img loading="lazy" src="https://i.imgur.com/NzqYoxt.gif">freak of nature I've ever seen, what isn't there to love?
+      <br> 
+      How could somebody nOT love Spamton???? Just look at him, he's just so excited to make a deal with you that he cant contain it!!!
+      <br>
+      <br>
+      <img loading="lazy" src="https://i.imgur.com/h4hZIXy.gif"> I would buy his garbage at double the price
+      <img loading="lazy" src="https://i.imgur.com/wmv6pZR.gif">
+    </td>
+
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/e4ido7E.gif">
+    </td>
+  </tr>
+</table>
+
+<table cellpadding="9">
+  <tr>
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/WcckcgA.gif">
+    </td>
+
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/G0qzp3J.gif">
+    </td>
+
+    <td align="center">If Spamton has a million fans, then I am one of them.
+      <br>
+      If Spamton has ten fans, then I am one of them.
+      <br>
+      If Spamton has only one fan, then that fan is me.
+      <br>
+      If Spamton has no fans, then I am no longer on this earth.
+      <br>
+      <img loading="lazy" src="https://i.imgur.com/MwQc0kD.gif"><img loading="lazy" src="https://i.imgur.com/MwQc0kD.gif"><img loading="lazy" src="https://i.imgur.com/MwQc0kD.gif">
+      <br>
+      If the world is against Spamton, then I am against the world.
+    </td>
+
+    <td>
+      <img loading="lazy" src="https://i.imgur.com/CwO3PQz.gif">
+    </td>
+  </tr>
+</table>
+
+<font align="right"><img loading="lazy" src="https://i.imgur.com/Pf2BcXW.gif"></font>
+
+<table align="center" cellpadding="9" width=900>
+  <tr>
+    <td>
+      <center><img loading="lazy" src="https://i.imgur.com/N1n5nyy.gif"></center>
+      <br>
+      <center>
+      Spamton G Spamton used<img loading="lazy" src="https://i.imgur.com/q3YMMJ7.png"> to be rich and famouse back in 1997 and I used to be a lot happier in 1997 so we have a lot in common!!!! Can you imagine if 1997 never ended I think we'd already have world peace or at least Pizza <img loading="lazy" src="https://i.imgur.com/C9iHpFg.gif"> Hut wouldn't suck as much as it does now. I think I blame the phone guy for all of it, he really fucked up Piza Hut<img loading="lazy" src="https://i.imgur.com/mnBhO3V.gif">
+      </center>
+    </td>
+  </tr>
+</table>
+
+<marquee><img loading="lazy" src="https://i.imgur.com/Mm3Lv5D.gif"> <font color="Black">...</font> <a href="https://www.youtube.com/watch?v=6IhFEHJG68Q"><img loading="lazy" src="https://i.imgur.com/RJCaoWo.gif"></a> <img loading="lazy" src="https://i.imgur.com/Mm3Lv5D.gif"></marquee>
+
+<br>
+<br>
+
+<img loading="lazy" src="https://i.imgur.com/J049E8p.gif"><img loading="lazy" src="https://i.imgur.com/J049E8p.gif">
+
+<br>
+<br>
+
+<table align="center" width=700>
+  <tr align="center">
+    <td><img loading="lazy" src=""></td>
+    <td><img loading="lazy" src=""></td>
+  </tr>
+</table> 
+
+<img loading="lazy" src="https://i.imgur.com/hfmM83T.gif">
+
+<br>
+<hr>
+<br>
+
+<!-- NAVIGATION START -->
+ 
+<table align="center" bgcolor="White" cellspacing="2" cellpadding="2" border=3>
+  <tr align="center">
+    <td>
+      <a href="https://shwintykat.neocities.org/shrines/medic"><img loading="lazy" src="/images/blback.gif"></a><a href="https://shwintykat.neocities.org/"><img loading="lazy" src="/images/blhome.gif"></a><a href="https://shwintykat.neocities.org/shrines"><img loading="lazy" src="/images/blnext.gif"></a>
+    </td>
+  </tr>
+</table> 
+
+<!-- NAVIGATION END -->
+ 
+<br>
+
+<hr>
+
+<!--- CREDITS START -->
+
+<center>
+  <font size="2">
+    This page designed and maintained by <a href="https://www.twitter.com/shwintykat">Shwinty Meerkat</a><br>
+    This page was last modified on <script>document.write(document.lastModified);</script><br><br>
+    This page hosted by <img loading="lazy" src="https://i.imgur.com/WmT8tBy.jpg"> Get your own <a href="https://neocities.org/">Free Home Page</a>
+  </font>
+</center>
+
+<!-- CREDITS END -->
+
+<hr>
+
+</center>
+</DIV>
+</body>
